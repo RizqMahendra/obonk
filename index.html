@@ -15,22 +15,20 @@
             #areapesan{
                 display: none;
             }
-            .scrollable{
-                height: 100px;
-                overflow-y: auto;
+            .table-responsive{
+  height:500px; width:50%;
+  overflow-y: auto;
+  border:2px solid #444;
+}.table-responsive:hover{border-color:red;}
+
+table{width:100%;}
+td{padding:24px; background:#eee;}
+.scrollable{
+               
                 overflow-x: hidden;
             }
             table.scrollable{display: block}
-            tbody { border-top: 2px solid black; }
-
-tbody td,{
-    width: 20%; /* Optional */
-    border-right: 1px solid black;
-}
-
-tbody td:last-child, thead th:last-child {
-    border-right: none;
-}
+        
 
         </style>
     </head>
@@ -59,7 +57,7 @@ tbody td:last-child, thead th:last-child {
                 </div>
                 <div class="col-md-8">
                     <div class="scrollable">
-                        <table class="table scroll table-bordered">
+                        <table class="table scrollable table-responsive ">
                             <tbody>
                                 <tr>
                                     <td>
@@ -128,6 +126,20 @@ tbody td:last-child, thead th:last-child {
         });
         
       });
+
+    </script>
+    <script>
+    var $el = $(".table-responsive");
+function anim() {
+  var st = $el.scrollTop();
+  var sb = $el.prop("scrollHeight")+$el.innerHeight();
+  $el.animate({scrollTop: st<sb ? sb : 0}, 2000, anim);
+}
+function stop(){
+  $el.stop();
+}
+anim();
+$el.hover(stop, anim)
     </script>
     </body>
 </html>
